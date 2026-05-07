@@ -1,1 +1,4 @@
-/README.md
+/DETAILS.md
+node_modules/
+bin/
+obj/
