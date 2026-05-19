@@ -5,8 +5,12 @@
   - connect to your database
 */
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
+
+builder.Services.AddScoped<NasaService>();
 
 app.MapGet("/health", () => new
 {

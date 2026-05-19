@@ -20,6 +20,15 @@ npm install
 npm run dev
 ```
 
+Then open the local URL Vite prints in the terminal.
+It is usually `http://localhost:5173`.
+
+If you want to verify TypeScript separately:
+
+```sh
+npm run type-check
+```
+
 ## Later
 
 Add routing only when you truly need multiple screens.
