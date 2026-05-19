@@ -7,9 +7,9 @@ public class NasaService
     private readonly HttpClient _httpClient;
     private readonly IConfiguration _configuration;
 
-    public NasaService(IConfiguration configuration)
+    public NasaService(HttpClient httpClient, IConfiguration configuration)
     {
-        _httpClient = new HttpClient(); // Abrimos una instancia del cliente http para hacer la soli
+        _httpClient =  httpClient; // Corregido: Abrimos una instancia en program, que posteriormente es utilizada aquí
         _configuration = configuration;
     }
 

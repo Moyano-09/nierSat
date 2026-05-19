@@ -8,22 +8,31 @@ From the project root:
 
 ```powershell
 npm install
+cd Frontend
 npm run dev
 ```
 
-Default local URLs:
+Or from the project root without changing directories:
 
-- frontend canvas: `http://localhost:5500`
+```powershell
+npm run dev
+```
+
+Default local URL:
+
+- frontend app: `http://localhost:5173`
 
 ## Current Direction
 
-- `frontend/` is the visual canvas you can later migrate into Vue 3.
-- `backend/` is now reserved fora C# API's.
+- `Frontend/` is the active Vue 3 + Vite application.
+- `Frontend/src/main.ts` is the frontend bootstrap entry point.
+- `backend/` is reserved for a future C# API.
 
-## When You Install Vue 3
+## Root Scripts
 
-The cleanest path is:
+These root scripts proxy into `Frontend/`:
 
-```powershell
-npm create vue@latest frontend-vue
-```
+- `npm run dev`
+- `npm run build`
+- `npm run preview`
+- `npm run type-check`

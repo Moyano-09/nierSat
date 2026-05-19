@@ -2,9 +2,10 @@
   "name": "nier-automata-sat",
   "version": "0.1.0",
   "private": true,
-  "description": "Learning scaffold for a Nier-inspired space portfolio with a future Vue frontend and C# backend.",
+  "description": "Learning scaffold for a Nier-inspired space portfolio with a Vue frontend and C# backend.",
   "scripts": {
-    "dev": "node scripts/dev.js",
-    "start": "node scripts/dev.js"
+    "dev:front": "npm --prefix Frontend run dev",
+    "dev:back": "dotnet run --project backend",
+    "dev:full": "concurrently \"npm run dev:back\" \"npm run dev:front\""
   }
 }
