@@ -9,13 +9,12 @@
   --accent: #8f6b3d;
   --accent-soft: rgba(143, 107, 61, 0.14);
   --shadow: 0 18px 40px rgba(47, 37, 25, 0.12);
+  --frame-width: 1320px;
+  --frame-height: 860px;
   --max-width: 1180px;
   --radius: 24px;
   font-family: 'IBM Plex Mono', monospace;
   color: var(--ink);
-  background:
-    radial-gradient(circle at top, rgba(255, 248, 235, 0.55), transparent 35%),
-    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
 }
 
 * {
@@ -29,11 +28,21 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: transparent;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(215, 204, 183, 0.18), rgba(197, 183, 157, 0.24)),
+    url('../styles/images/background.png') center / contain no-repeat,
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
 }
 
 #app {
-  min-height: 100vh;
+  width: min(100%, var(--frame-width));
+  height: min(calc(100vh - 2rem), var(--frame-height));
+  padding: 1rem;
+  overflow: hidden;
 }
 
 a {
@@ -41,9 +50,19 @@ a {
 }
 
 .app-shell {
-  width: min(calc(100% - 2rem), var(--max-width));
+  width: 100%;
+  max-width: var(--max-width);
+  height: 100%;
   margin: 0 auto;
-  padding: 1rem 0 4rem;
+  padding: 0.5rem 0;
+}
+
+.app-shell-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 520px);
+  gap: 1.5rem;
+  align-items: start;
+  height: 100%;
 }
 
 .topbar,
@@ -79,11 +98,19 @@ a {
   border-radius: var(--radius);
 }
 
+.main-stage {
+  min-height: 0;
+  height: 100%;
+  align-content: start;
+}
+
 .hero {
   display: grid;
   grid-template-columns: 1.5fr 0.9fr;
   gap: 1.25rem;
-  padding: 2rem;
+  height: 100%;
+  padding: 1.5rem;
+  overflow: auto;
 }
 
 .hero h1,
@@ -120,8 +147,46 @@ a {
 }
 
 .module-section {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   padding: 1.5rem;
+}
+
+.side-panel {
+  display: grid;
+  gap: 1rem;
+  height: 100%;
+  overflow: auto;
+  padding-right: 0.25rem;
+}
+
+.side-panel-section {
+  margin-top: 0;
+  padding: 1.25rem;
+}
+
+.side-panel-copy {
+  margin: 0;
+}
+
+.side-panel-card {
+  min-height: unset;
+}
+
+.side-panel-image {
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 12px;
+  display: block;
+}
+
+.side-panel-grid {
+  grid-template-columns: 1fr;
+}
+
+.side-panel-grid .module-card[data-size='wide'],
+.side-panel-grid .module-card[data-size='medium'],
+.side-panel-grid .module-card[data-size='full'] {
+  grid-column: 1 / -1;
 }
 
 .section-heading {
@@ -130,7 +195,7 @@ a {
 
 .section-heading h2 {
   margin-top: 0.25rem;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
 }
 
 .module-grid {
@@ -140,7 +205,7 @@ a {
 }
 
 .module-card {
-  min-height: 220px;
+  min-height: 180px;
   padding: 1rem;
   border-radius: 1rem;
   background: var(--panel-strong);
@@ -181,8 +246,39 @@ a {
 }
 
 @media (max-width: 900px) {
+  body {
+    display: block;
+    padding: 0.5rem;
+    overflow: auto;
+    background-size: cover;
+  }
+
+  #app {
+    width: 100%;
+    height: auto;
+    min-height: calc(100vh - 1rem);
+    padding: 0.5rem 0;
+    overflow: visible;
+  }
+
+  .app-shell-main {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .main-stage,
   .hero {
     grid-template-columns: 1fr;
+  }
+
+  .main-stage {
+    height: auto;
+  }
+
+  .side-panel {
+    height: auto;
+    overflow: visible;
+    padding-right: 0;
   }
 
   .module-card[data-size='wide'],
@@ -193,8 +289,7 @@ a {
 
 @media (max-width: 640px) {
   .app-shell {
-    width: min(calc(100% - 1rem), var(--max-width));
-    padding-top: 0.5rem;
+    padding-top: 0;
   }
 
   .topbar {
